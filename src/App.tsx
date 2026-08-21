@@ -5,7 +5,7 @@ import { SignalEngineView } from './components/SignalEngineView';
 import { LakehouseView } from './components/LakehouseView';
 import { McpHubView } from './components/McpHubView';
 import { CodePipelineView } from './components/CodePipelineView';
-import { AiMcpSettingsModal } from './components/AiMcpSettingsModal';
+import { InferenceSettingsModal } from './components/InferenceSettingsModal';
 import { getTickerData, mergeLiveMarketDataIntoTicker } from './data/mockMarketData';
 import { TickerMarketData, AISettingsConfig, MCPServerConfig } from './types';
 import { calculateConfluenceScore, calculateTechnicalIndicators } from './utils/quantEngine';
@@ -256,8 +256,8 @@ export default function App() {
         )}
       </main>
 
-      {/* AI & MCP Configuration Modal */}
-      <AiMcpSettingsModal
+      {/* Model & MCP Configuration Modal */}
+      <InferenceSettingsModal
         isOpen={isSettingsModalOpen}
         onClose={() => setIsSettingsModalOpen(false)}
         settings={aiSettings}

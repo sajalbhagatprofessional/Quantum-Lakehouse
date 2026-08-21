@@ -1,8 +1,45 @@
+# Production dependencies & build outputs
 node_modules/
 build/
 dist/
+dist-ssr/
 coverage/
-.DS_Store
-*.log
-.env*
+*.local
+
+# Environment variables & secrets
+.env
+.env.production
+.env.local
+.env.*.local
 !.env.example
+
+# Operating System & IDE files
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# AI Assistant, Coding Agent, & Platform Specific Artifacts
+.aistudio/
+**/.aistudio/
+.gemini/
+**/.gemini/
+GEMINI.md
+AGENTS.md
+.cursor/
+.claude/
+.copilot/
+.windsurf/
+.system_generated/
+*.prompt.md
+*.ai-cache
+*.brain/
+.assistant/
+

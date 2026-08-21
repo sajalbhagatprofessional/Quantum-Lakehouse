@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { AIProvider, AISettingsConfig, MCPServerConfig, MCPToolDefinition } from '../types';
 
-interface AiMcpSettingsModalProps {
+interface InferenceSettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
   settings: AISettingsConfig;
@@ -100,7 +100,7 @@ const PROVIDER_OPTIONS: { id: AIProvider; name: string; tag: string; defaultMode
   }
 ];
 
-export const AiMcpSettingsModal: React.FC<AiMcpSettingsModalProps> = ({
+export const InferenceSettingsModal: React.FC<InferenceSettingsModalProps> = ({
   isOpen,
   onClose,
   settings,
