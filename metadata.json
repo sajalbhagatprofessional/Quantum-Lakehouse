@@ -1,0 +1,6 @@
+{
+  "name": "Quantitative Market Intelligence & Lakehouse Pipeline",
+  "description": "Institutional-grade real-time market data pipeline, lakehouse storage schemas, quantitative signal engine, and automated equity research dossier generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
