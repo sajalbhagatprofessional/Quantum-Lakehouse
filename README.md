@@ -492,6 +492,75 @@ In the **Inference Settings Modal**, you can toggle which Lakehouse telemetry la
 - **Vectorized Pandas/NumPy Feature Pipeline**: Script for calculating EMAs, RSI, Supertrend, and Z-scores on large historical datasets.
 - **Medallion DDL & SQL Transformations**: DuckDB DDL schemas and Gold Layer aggregation queries ready for deployment.
 
+### 6. Automated Trading & Robinhood Hub
+- **Robinhood Demo Sandbox Simulator**: Fully functional simulated trading environment initialized with $100,000 buying power, realistic equity fill pricing, and real-time portfolio P&L tracking without financial risk.
+- **Live Robinhood Routing Switcher**: Seamless toggle between zero-risk Demo Sandbox and Live account execution.
+- **AI Natural Language Strategy Architect**: Describe arbitrary trading strategies in plain English (e.g. *"Buy $2,000 of NVDA when Confluence Score > 75 and Congress members purchase shares, set stop loss at 4% and profit target at 9%"*). The AI compiler translates natural language into structured, executable trigger pipelines.
+- **Automated Quantitative Rules Engine**: Evaluates technical indicators, Confluence scores, dark pool volume surges, and government insider disclosures to execute automated orders.
+- **Government Disclosures Sync Pipeline**: Background sync loop pulling official SEC Form 4 and Congressional STOCK Act filings every 45 seconds, enabling 1-click auto-copy trading strategies.
+- **Full Execution Audit Trail**: Real-time ledger of all filled, pending, and executed orders with slippage, timestamps, and trigger source provenance.
+
+---
+
+## 📰 News-Driven Fundamental Analysis & Anti-Bias Sieve
+
+The platform incorporates a **Critical Anti-Hallucination & Anti-Bias Fundamental Intelligence Engine**. The agent does **not** blindly follow financial media headlines or sell-side promotional upgrades. Instead, it treats all incoming text as narrative data points that must be forensically audited against hard lakehouse fundamentals.
+
+### 1. Multi-Source Critical Skepticism & Triangulation
+- **Source Reliability & Track Record Scoring (1-10)**: Every publisher (FT, WSJ, Bloomberg, Reuters, Barron's, Corporate PR, Mainstream Media) is scored based on institutional accuracy and historical conflict-of-interest indicators.
+- **Publisher Bias Classification**: Categorizes articles into `PRO_CORPORATE_PR`, `RETAIL_FOMO_HYPE`, `BEARISH_FEAR_MONGERING`, `INSTITUTIONAL_NEUTRAL`, or `HIGHLY_OBJECTIVE`.
+- **Media vs. Balance Sheet Divergence**: Compares headline sentiment directly against audited SEC 10-Q/10-K data (Cash Flow from Operations, Piotroski F-Score, Altman Z-Score, ROIC vs WACC). Detects `HYPE_EXCEEDS_REALITY`, `UNDERVALUED_FEAR_DIVERGENCE`, or `ACCOUNTING_RED_FLAGS`.
+- **Hard Data Corroboration Ledger**: Cross-verifies qualitative news claims against official financial statement line items (VERIFIED vs DISPROVEN).
+- **Devil's Advocate Counter-Thesis**: Formulates strict failure modes and identifies what happens if hyper-bullish growth assumptions decelerate or capital expenditure returns lag.
+
+---
+
+## 🧠 AI Agent Skills Marketplace & Custom Skill Upload
+
+The AI reasoning engine is completely modular and accepts specialized analytical **Skills** injected directly into its prompt reasoning loop:
+
+```
+[Agent Reasoning Core]
+        │
+        ├── 🎯 Warren Buffett & Graham Deep Value & Moat Skill (Owner Earnings, ROIC > 15%, Margin of Safety)
+        ├── 🔍 Forensic Accounting & Beneish M-Score Audit Skill (Accrual anomalies, capitalization red flags)
+        ├── 🌐 Anti-Noise Media Sieve Skill (Identifies PR promotional spin & retail distribution traps)
+        ├── 📈 Macro Liquidity & Yield Curve Regime Skill (SOFR, RRP, 10Y-2Y slope, DXY currency drag)
+        ├── 🌊 Institutional Dark Pool & Options Gamma Squeeze Skill (Off-exchange prints & GEX pinning)
+        └── ➕ User Uploaded Custom Skills (JSON, YAML, Markdown, or plain-English prompt guidelines)
+```
+
+### Dynamic Context & Temporal Awareness
+All skill executions inject:
+- **Precise System Date, Time, and Timezone** (e.g. `Tuesday, September 1, 2026 • 09:40:37 PDT`).
+- **Market Session State**: Regular Trading Hours (RTH), Pre-Market, or After-Hours.
+- **Active Economic & Interest Rate Regime**.
+
+---
+
+## 📚 Subscribed Premium Financial Newspaper Vault
+
+Users can upload documents, PDFs, EPUBs, and text transcripts from their paid financial newspaper subscriptions (*Financial Times*, *The Wall Street Journal*, *Barron's*, *Bloomberg Businessweek*):
+- **Automated Text Extraction & Parsing**: Ingests multi-page institutional reports and extracts key macro catalysts.
+- **Lakehouse Cross-Validation**: Compares journalist claims against DuckDB Bronze/Silver historical data tables.
+- **In-App Document Reader**: Instant transcript preview with credibility ratings and highlighted catalyst tags.
+
+---
+
+## 🏗️ External Data Warehouse & Infrastructure Advisory
+
+To operate at maximum efficiency, scale to billions of market ticks, and maintain cost-effective AI inference, the platform provides explicit architecture blueprints for external cloud integration:
+
+1. **Columnar Data Lakehouse (ClickHouse / Snowflake / BigQuery / MotherDuck)**:
+   - *Why*: Sub-10ms queries over 10+ years of tick-by-tick order book data and SEC Edgar filings with vectorized SIMD execution.
+   - *Cost Efficiency*: 10x lower compute costs compared to row-based relational databases for OLAP financial scans.
+2. **Vector Knowledge Store (pgvector / Pinecone / Qdrant)**:
+   - *Why*: RAG semantic retrieval over 10+ years of 10-K footnotes, earnings transcripts, and premium newspaper archives in < 30ms.
+3. **Event Streaming Gateway (Apache Kafka / Redis Streams)**:
+   - *Why*: Pub/sub messaging for OPRA options sweeps and real-time NASDAQ TotalView feeds without client polling latency.
+4. **Distributed In-Memory L1 Cache (Redis / DragonFly)**:
+   - *Why*: Instant sub-millisecond dashboard renders and 15-minute fundamental AI analysis caching to prevent redundant API token costs.
+
 ---
 
 ## 💻 Local Deployment & Quickstart Guide

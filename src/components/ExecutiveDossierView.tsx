@@ -31,6 +31,7 @@ import {
   RefreshCw,
   Copy,
   Check,
+  Zap,
   Info,
   Calendar,
   Compass
@@ -851,16 +852,58 @@ ${data.politicalInsiderTrades.map(t => `- ${t.filerName} (${t.role}): ${t.transa
               </div>
             </div>
 
-            {/* Position Sizer Readout */}
-            <div className="bg-slate-900/90 p-3 rounded-lg border border-slate-800 text-xs flex items-center justify-between">
+            {/* Position Sizer Readout & 1-Click Automate Button */}
+            <div className="bg-slate-900/90 p-3 rounded-lg border border-slate-800 text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
                 <span className="text-slate-400 text-[11px] block">Calculated Position Size:</span>
-                <span className="font-bold text-white text-sm">{recommendedShares.toLocaleString()} Shares</span>
+                <span className="font-bold text-white text-sm">{recommendedShares.toLocaleString()} Shares (${totalPositionCost.toLocaleString()})</span>
               </div>
-              <div className="text-right">
-                <span className="text-slate-400 text-[11px] block">Capital Committed:</span>
-                <span className="font-bold text-emerald-400 text-sm">${totalPositionCost.toLocaleString()}</span>
-              </div>
+              <button
+                onClick={async () => {
+                  try {
+                    const res = await fetch('/api/trading/strategies', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        name: `${data.ticker} High-Conviction Long Asymmetric Setup`,
+                        ticker: data.ticker,
+                        action: 'BUY',
+                        sizingType: 'FIXED_DOLLARS',
+                        sizingValue: totalPositionCost > 0 ? totalPositionCost : 2500,
+                        stopLossPct: bullishSetup.riskPercentage,
+                        takeProfitPct: 7.5,
+                        conditions: [
+                          {
+                            metric: 'PRICE_ENTRY_ZONE',
+                            operator: '<=',
+                            threshold: bullishSetup.idealEntry,
+                            label: `Price <= Ideal Entry ($${bullishSetup.idealEntry.toFixed(2)})`
+                          },
+                          {
+                            metric: 'CONFLUENCE_SCORE',
+                            operator: '>=',
+                            threshold: 40,
+                            label: 'Confluence Score >= 40'
+                          }
+                        ],
+                        cooldownMinutes: 60,
+                        maxExecutions: 3,
+                        description: `Automated long execution targeting $${bullishSetup.target1} (R1) and $${bullishSetup.target2} (R2) with strict $${bullishSetup.stopLoss} invalidation.`
+                      })
+                    });
+                    const resData = await res.json();
+                    if (resData.success) {
+                      alert(`Strategy successfully deployed to Robinhood engine! Active monitoring initialized for ${data.ticker}.`);
+                    }
+                  } catch (e: any) {
+                    alert('Error deploying strategy: ' + e.message);
+                  }
+                }}
+                className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950 transition-all shrink-0"
+              >
+                <Zap className="w-3.5 h-3.5" />
+                <span>Deploy to Robinhood</span>
+              </button>
             </div>
           </div>
 

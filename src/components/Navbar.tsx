@@ -13,15 +13,17 @@ import {
   Sparkles,
   Server,
   Cpu,
-  Sliders
+  Sliders,
+  Newspaper,
+  ShieldCheck
 } from 'lucide-react';
 import { TickerMarketData, AISettingsConfig } from '../types';
 
 interface NavbarProps {
   currentTicker: string;
   tickerData: TickerMarketData;
-  activeTab: 'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code';
-  setActiveTab: (tab: 'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code') => void;
+  activeTab: 'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code' | 'trading' | 'news_fundamental';
+  setActiveTab: (tab: 'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code' | 'trading' | 'news_fundamental') => void;
   onSelectTicker: (ticker: string) => void;
   isStreaming: boolean;
   setIsStreaming: (val: boolean) => void;
@@ -176,6 +178,36 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>Market Intelligence Dossier</span>
             <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 font-mono">
               {tickerData.ticker}
+            </span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('news_fundamental')}
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all shrink-0 ${
+              activeTab === 'news_fundamental'
+                ? 'bg-cyan-600/20 text-cyan-400 border border-cyan-500/40 shadow-sm shadow-cyan-950'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+            }`}
+          >
+            <Newspaper className="w-3.5 h-3.5 text-cyan-400" />
+            <span>News & Fundamental AI</span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-cyan-950 text-cyan-300 border border-cyan-800/40 font-mono font-bold">
+              ANTI-BIAS
+            </span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('trading')}
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-md text-xs font-medium transition-all shrink-0 ${
+              activeTab === 'trading'
+                ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/40 shadow-sm shadow-emerald-950'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+            }`}
+          >
+            <Zap className="w-3.5 h-3.5 text-emerald-400" />
+            <span>Automated Trading & Robinhood</span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-300 border border-emerald-800/40 font-mono font-bold">
+              AI TRADING
             </span>
           </button>
 

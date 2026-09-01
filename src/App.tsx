@@ -5,6 +5,8 @@ import { SignalEngineView } from './components/SignalEngineView';
 import { LakehouseView } from './components/LakehouseView';
 import { McpHubView } from './components/McpHubView';
 import { CodePipelineView } from './components/CodePipelineView';
+import { AutomatedTradingView } from './components/AutomatedTradingView';
+import { NewsAndFundamentalAnalysisView } from './components/NewsAndFundamentalAnalysisView';
 import { InferenceSettingsModal } from './components/InferenceSettingsModal';
 import { getTickerData, mergeLiveMarketDataIntoTicker } from './data/mockMarketData';
 import { TickerMarketData, AISettingsConfig, MCPServerConfig } from './types';
@@ -82,7 +84,7 @@ const DEFAULT_MCP_SERVERS: MCPServerConfig[] = [
 export default function App() {
   const [currentTicker, setCurrentTicker] = useState<string>('NVDA');
   const [tickerData, setTickerData] = useState<TickerMarketData>(() => getTickerData('NVDA'));
-  const [activeTab, setActiveTab] = useState<'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code'>('dossier');
+  const [activeTab, setActiveTab] = useState<'dossier' | 'signals' | 'lakehouse' | 'mcp' | 'code' | 'trading' | 'news_fundamental'>('dossier');
   const [isStreaming, setIsStreaming] = useState<boolean>(true);
   const [dataSource, setDataSource] = useState<string>('LIVE_EXCHANGE_FEED');
   const [isLoadingMarket, setIsLoadingMarket] = useState<boolean>(false);
@@ -230,6 +232,25 @@ export default function App() {
             isLoadingMarket={isLoadingMarket}
             aiSettings={aiSettings}
             onOpenAiSettings={() => setIsSettingsModalOpen(true)}
+          />
+        )}
+
+        {activeTab === 'news_fundamental' && (
+          <NewsAndFundamentalAnalysisView
+            currentTickerData={tickerData}
+            aiSettings={aiSettings}
+            onOpenAiSettings={() => setIsSettingsModalOpen(true)}
+            onSelectTicker={handleSelectTicker}
+            onNavigateToTrading={() => setActiveTab('trading')}
+          />
+        )}
+
+        {activeTab === 'trading' && (
+          <AutomatedTradingView
+            currentTickerData={tickerData}
+            aiSettings={aiSettings}
+            onOpenAiSettings={() => setIsSettingsModalOpen(true)}
+            onSelectTicker={handleSelectTicker}
           />
         )}
 
